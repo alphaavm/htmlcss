@@ -1,0 +1,140 @@
+<html>
+<head><title>Hello</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+p { 
+   
+    padding: 30px;
+    color: RED;
+    font-family: broadway;
+    font-size: 300%;
+
+}
+nav { 
+    float: left;
+   width:200px;
+ margin: -10;
+    padding: 1em;
+background-color:white;
+}
+footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+    bottom: -45;
+margin:-10;
+}
+
+h2 { 
+   
+    color: RED;
+    font-family: broadway;
+    font-size: 300%;
+background-color:Black;
+margin :-10px;
+}
+ul{   list-style-type: none;
+ margin:-10;
+    padding: 3;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+  
+}
+aside{ background-color:white;
+padding: 5px;
+width: 650px;
+    font-family: broadway
+}
+div {
+    background-color:white;
+    width: 300px;
+    border: 5px solid #0080ff;
+    padding: 5px;
+    margin: 15px;
+    position: fixed;
+    bottom: 32;
+    right: -15;
+    font-family: broadway
+}
+
+body {
+
+background-color: orange;
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        background-color: lightblue;
+    }
+}
+
+
+</style><head>
+<body>
+<form action="home.html" method="post"><center>
+<h2>COMMUNITY</h2>
+<ul>
+  &emsp;  &emsp;  &emsp; <li><a href="#home">Home</a></li>  &emsp;  &emsp;  &emsp;  
+&emsp;  &emsp;  &emsp;  <li><a href="#need Help ">Need Help</a></li>  &emsp;  &emsp;  &emsp;  
+ &emsp; &emsp; &emsp;  <li><a href="#contact">Contact</a></li>  &emsp;  &emsp;  &emsp;  
+&emsp;  &emsp;  &emsp;  <li><a href="#menu">Menu</a></li>  &emsp;  &emsp;  &emsp;  
+    &nbsp&nbsp&nbsp<li style="float:right"><a class="active" href="#about">About</a></li>  &nbsp&nbsp&nbsp
+</ul>
+
+</br></br>
+<h3><nav>Notification<marquee direction="up">1.Take home any medium size pan pizza, anytime, any day. T&C apply
+Fresh Dough & Toppings · Tastiest Pan Pizzas · Order Delicious Pizzas · Free Home Delivery
+Deal: 50% off Medium Pan Pizzas · Code WOW50<br><br><br><br>2.50% Off On Any Medium Pizza Pizza Hut Coupons for January 2018 | Save an average of Rs.400 | Offers Verified Today | Get Exclusive PizzaHut.co.in Promo Codes at Happycheckout.in<br></marquee></h3></nav>
+<asideclass="w3-container">
+<aside class="w3-container w3-green w3-cell w3-cell-middle">
+   <h3>GET YOUR LOCATION HERE !</h3>
+<h1 id="demo">Click the button to get your position.</h1>
+
+<button onclick="getLocation()">Try It</button>
+
+<aside id="mapholder123"></aside>
+
+<script>
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU";
+    document.getElementById("mapholder123").innerHTML = "<img src='"+img_url+"'>";
+}
+</script>
+  </aside><br><br><br><br><br><br><br><br>
+<div>
+<h1 style="color:blue">Login </h1>
+<hr>
+Email Id:<br><input type="email" name="email" placeholder="abc@gmail.com"required> <br><br>
+<br>
+<br>
+Password:<br><input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"required>
+<br><br><br><br>
+<input type="submit" name="submit"> &nbsp 
+<input type="reset" name="reset">
+<br><br><br><br><br><br>
+<a href="signup.html"><h3> SIGNUP</a></div>
+<br><br></br></br><br><br></br></br><br><br><br><br><br></br></br><br><br></br></br><br><br></br></br></br></br><footer>Thank You!</footer>
+</body></html>

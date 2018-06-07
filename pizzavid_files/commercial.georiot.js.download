@@ -1,0 +1,5 @@
+(function ($, Drupal, Georiot) {
+  if (typeof Drupal.settings.commercial_georiot.ID !== 'undefined') {
+    Genius.amazon.convertLinks(Drupal.settings.commercial_georiot.ID, true, "http://buy.geni.us"); 
+  }
+})(jQuery, Drupal, Georiot);

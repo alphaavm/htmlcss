@@ -1,0 +1,130 @@
+<HTML>
+<HEAD>
+<style>
+
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
+body {
+   background-image: url("white.jpg");
+  
+}
+
+#greet
+{
+color:red;
+text-align:center;
+font-size:3em;
+}
+family {
+border: 2px dashed #0000ff}
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: red;
+    clear: left;
+    text-align: center;
+}
+
+nav {
+    float: left;
+    max-width: 360px;
+    margin: 0;
+    padding: 1em;
+
+}
+
+
+   nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+article {
+
+    
+   
+
+    margin-left: 170px;
+    border-left: 1px solid gray;
+    padding: 1em;
+    overflow: hidden;
+}
+</style>
+</head>
+<body>
+
+
+
+<div class="container">
+
+<header>
+   <h1 font-weight="bold" font-color:orange><marquee>Welcome To Fun Cheese!(•_•)/ </h1></marquee>
+</header>
+
+<nav>
+ <h6>
+<img width="0" height="0" src="pizza.jpg" id="image1">
+<canvas id="myCanvas" width="263" height="192" style="border:1px solid #000000;" align="middle">
+
+
+</canvas>
+ 
+<script>
+ window.onload = function() {
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var img = document.getElementById("image1");
+    ctx.drawImage(img, 0, 0);
+
+} 
+function loadDoc() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById("demo").innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.html", true);
+  xhttp.send();
+}
+    </script>
+
+<video width="280" height="240" controls>
+  <source src="movie.mp4" type="video/mp4">
+ 
+  Your browser does not support the video tag.
+</video>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+</nav>
+
+<article>
+<h3><p><center>
+<div id="demo">
+<h1>The XMLHttpRequest Object</h1>
+<button type="button" onclick="loadDoc()">ABOUT US!</button>
+</div>
+</center>
+
+ <h3 align="right">Pizza Melody<br><p align="right"><audio controls>
+  <source src="horse.ogg" type="audio/ogg"></audio></p>
+
+
+
+   
+</audio>
+
+</article>
+
+<footer>Copyright &copy; alpha.com</footer>
+
+</body>
+</html>

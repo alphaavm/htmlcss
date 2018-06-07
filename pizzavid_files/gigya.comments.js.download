@@ -1,0 +1,117 @@
+(function ($, Drupal, window, document, gigya) {
+
+  if (typeof Drupal.settings.gigya.comments !== 'undefined' && Drupal.settings.gigya.comments.processed !== true) {
+    // prevent double running of behavoir
+    Drupal.settings.gigya.comments.processed = true;
+
+    var commentParams = {
+      categoryID: Drupal.settings.gigya.comments.catID,
+      streamID: Drupal.settings.gigya.comments.streamID,
+      version: 2,
+      containerID: 'commentsDiv',
+      cid: '',
+      onLoad : onUILoad,
+      enabledShareProviders: 'facebook,twitter',
+      useSiteLogin: true,
+      onSiteLoginClicked: onSiteLoginHandler // registering to the onSiteLoginClicked event
+    }
+    var streamParams = {
+      categoryID: Drupal.settings.gigya.comments.catID,
+      streamID: Drupal.settings.gigya.comments.streamID,
+      callback: printCommentResponse
+    };
+
+    // Gigya comments
+    gigya.comments.showCommentsUI(commentParams);
+    gigya.comments.getStreamInfo(streamParams);
+
+    // Gigya socialize
+    gigya.socialize.getUserInfo({
+      callback: printLoggedInResponse
+    });
+  }
+  function printLoggedInResponse(response) {    
+    if (response.user.UID === '') {
+      $(window).load(function() {
+        $('.gig-composebox-editor').css('display', 'none');
+        $('.gig-composebox-site-login').text('Log in or register to comment');
+      });
+    }
+  }
+  function printCommentResponse(response) {
+    if (response.errorCode === 0) {
+      var commentCount = response.streamInfo.approvedCommentCount;
+      if (commentCount === 1) {
+        $('#comment-count').text(commentCount + ' comment');
+      } else {
+        $('#comment-count').text(commentCount + ' comments');
+      }
+    }
+  }
+  function onSiteLoginHandler(event){
+    var currentUrl = window.location.href;
+    sessionStorage.setItem('indes_SourceURL', currentUrl);
+    sessionStorage.setItem('indes_Type', 'comment');
+    document.location = "/login";
+  }
+
+
+  function onUILoad() {
+    var siteName = $('meta[property="og:site_name"]').attr('content');
+    switch(siteName){
+      case 'The Independent': 
+        url = 'http://www.independent.co.uk/service/community-guidelines-9487166.html';
+        break;
+      case 'Evening Standard':
+        url = 'http://www.standard.co.uk/service/community-guidelines-9729850.html';
+        break;
+      case 'Homes and Property':
+        url = 'http://www.homesandproperty.co.uk/Service/community-guidelines-a103066.html';
+        break;
+      default:
+        url = 'http://www.independent.co.uk/service/community-guidelines-9487166.html';
+    }
+
+    var copy  = '<div class="community-guidelines">' +
+                  '<p>Please be respectful when making a comment and adhere to our <span class="copy-open">Community Guidelines.</a></p>' + 
+                  '<div class="copy-more">' +
+                    '<h2 class="box-title">Community Guidelines</h2>' +
+                    '<ul>' + 
+                      '<li>You may not agree with our views, or other users’, but please respond to them respectfully</li>' +
+                      '<li>Swearing, personal abuse, racism, sexism, homophobia and other discriminatory or inciteful language is not acceptable</li>' +
+                      '<li>Do not impersonate other users or reveal private information about third parties</li>' +
+                      '<li>We reserve the right to delete inappropriate posts and ban offending users without notification</li>' +
+                    '</ul>' +
+                    '<p>You can find our Community Guidelines in full <a href="' + url + '">here.</a></p>' +
+                  '</div>' +
+                '</div>';
+
+    var communityGuidelines = $('.gig-comments-composebox'),
+        replyLink = $('.gig-comment-replyLink'),
+        replyCommentBox = $('.gig-comment-replybox');
+
+    if ( $('.gig-composebox-login').css('display') === 'none' ) {
+      communityGuidelines.append(copy);
+    }
+    communityGuidelines.find('.copy-open').click(function() {
+      communityGuidelines.find('.copy-more').slideToggle();
+    }); 
+
+    replyLink.click(function() {
+      if ( $('.gig-comment-replybox.gig-comment-replybox-open').find('.community-guidelines').length < 1 ) {
+        replyCommentBox.append(copy);
+        replyCommentBox.find('.copy-open').click(function() {
+          replyCommentBox.find('.copy-more').slideToggle(); 
+        }); 
+      }        
+    }); 
+
+    $('.gig-composebox-logout').click(function() {
+      communityGuidelines.find('.community-guidelines').remove();
+    });
+    
+
+  }
+
+})(jQuery, Drupal, this, this.document, gigya);
+

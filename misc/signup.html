@@ -1,0 +1,68 @@
+<HTML><head>
+<style>
+body {
+    background-color: cyan;
+}
+
+@media only screen and (max-width: 800px) {
+    body {
+        background-color: lightblue;
+    }
+}
+
+
+</style></head>
+<body>
+
+<script>
+
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+
+function showPosition(position) {
+    var latlon = position.coords.latitude + "," + position.coords.longitude;
+    var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="
+    +latlon+"&zoom=14&size=400x300&key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU";
+    document.getElementById("mapholder123").innerHTML = "<img src='"+img_url+"'>";
+}
+</script>
+
+
+Name:&nbsp <input type="text" name="name" required><br>
+Surname:&nbsp <input type="text" name="surname" required><br>
+Age:&nbsp <input type="text" name="age"><br>
+Phone No.:&nbsp <input type="text" name="phno" required><br>
+
+Email id:&nbsp <input type="text" name="phno" required><br>
+
+password.:&nbsp <input type="password" name="phno" required><br>
+
+
+<h3>GENDER</h3>
+<input type="radio"name="r1" value"male">Male<br><br>
+<input type="radio"name="r2" value"female">Female<br><br>
+<input type="radio"name="r3" value"others">OTHERS<br><br><br>
+
+Select your interest for feeds:<select name="Interest">
+<option value="-1" SELECTED>GAMES	<option>
+<OPTION>ANIME</option>
+<OPTION>SERIES</option>
+<OPTION>MUSIC</option>
+<OPTION>MOVIES</option>
+<OPTION>NEWS</option>
+</SELECT>
+
+<h4 align="center"><input type="radio"name="r4" value"others">DO YOU AGREE TERMS AND CONDITION<H4>
+<input type ="submit" name"submit">&nbsp;&nbsp;&nbsp;
+
+
+<button onclick="getLocation()">Click here to locate!</button>
+<div id="mapholder123"></div>
+</body>
+</html>

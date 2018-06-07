@@ -1,0 +1,45 @@
+<html>
+<head><title>Hello</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+p { 
+   
+    padding: 30px;
+    color: RED;
+    font-family: broadway;
+    font-size: 300%;
+}
+
+div {
+    background-color:white;
+    width: 300px;
+    border: 5px solid skyblue;
+    padding: 5px;
+    margin: 5px;
+}
+
+body {
+    background-color: orange;
+}
+
+@media only screen and (max-width: 500px) {
+    body {
+        background-color: lightblue;
+    }
+}
+
+
+</style><head>
+<body>
+<form action="home.html" method="post"><center>
+<p>COMMUNITY</p>
+<div>
+Email Id:<br><input type="email" name="email" placeholder="abc@gmail.com"required> <br><br>
+Password:<br><input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"required>
+<br><br><br><br>
+<input type="submit" name="submit"> &nbsp 
+<input type="reset" name="reset">
+<br><br><br><br><br><br>
+<a href="signup.html"><h3> SIGNUP</a></div>
+</body></html>
